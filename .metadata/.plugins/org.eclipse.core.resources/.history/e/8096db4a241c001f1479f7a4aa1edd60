@@ -1,0 +1,5 @@
+package com.berna.app.aop.services;
+
+public class GreetingServiceImpl {
+
+}

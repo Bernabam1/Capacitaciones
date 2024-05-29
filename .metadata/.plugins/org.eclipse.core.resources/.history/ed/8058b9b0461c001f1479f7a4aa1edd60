@@ -1,0 +1,12 @@
+spring.application.name=spring-jpa
+#jdbc:gestor://puerto/nombre_de_la_db
+spring.datasource.url=jdbc:mysql://localhost:3306/db_springboot
+spring.datasource.username=root
+spring.datasource.password=sasa1234
+#driver de mysql para jdbc
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#dialecto sql para jpa
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+#para que nos muestre las operaciones de scripts sql, porque hibernate ejecuta todo por debajo
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create

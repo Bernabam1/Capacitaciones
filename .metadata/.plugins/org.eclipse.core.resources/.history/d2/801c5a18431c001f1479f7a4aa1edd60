@@ -1,0 +1,3 @@
+spring.application.name=spring-jpa
+#jdbc:gestor://puerto/nombre_de_la_db
+spring.datsource.url=jdbc:mysql://localhost:3306/db_users_springboot

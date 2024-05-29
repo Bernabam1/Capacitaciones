@@ -1,0 +1,5 @@
+package com.berna.microservicios.camelmicroservicea.routes.b;
+
+public class DeciderBean {
+
+}

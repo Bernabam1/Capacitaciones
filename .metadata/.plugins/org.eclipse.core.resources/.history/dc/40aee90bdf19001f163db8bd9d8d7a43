@@ -1,0 +1,5 @@
+package com.berna.springboot.error.models;
+
+public class Error {
+
+}

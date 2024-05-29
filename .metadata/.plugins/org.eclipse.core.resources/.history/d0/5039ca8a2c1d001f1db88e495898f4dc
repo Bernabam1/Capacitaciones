@@ -1,0 +1,17 @@
+package com.berna.springboot.jpa.repositories;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.berna.springboot.jpa.entities.Client;
+
+public interface ClientRepository extends CrudRepository<Client, Long> {
+
+	@Query("SELECT c FROM Client c JOIN FETCH c.addresses") // Va a buscar todo el cliente en una sola consulta
+	Optional<Client> findOneWithAdresses(Long id);
+	
+	@Query("SELECT c FROM Client c JOIN FETCH c.invoices") // Va a buscar todo el cliente en una sola consulta
+	Optional<Client> findOneWithInvoices(Long id);
+}

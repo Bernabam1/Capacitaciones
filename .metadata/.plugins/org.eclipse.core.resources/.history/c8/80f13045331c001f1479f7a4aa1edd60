@@ -1,0 +1,5 @@
+package com.berna.app.aop.aspects;
+
+public class GreetingPointcuts {
+
+}

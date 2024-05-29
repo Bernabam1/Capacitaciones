@@ -1,0 +1,30 @@
+package com.berna.springboot.di.app.springbootdi.repositories;
+
+import java.util.List;
+
+import org.springframework.core.io.ClassPathResource;
+
+import com.berna.springboot.di.app.springbootdi.models.Product;
+
+public class ProductRepositoryJson implements ProductRepository{
+	
+	private List<Product> list;
+	
+	// Necesito un constructor vacío
+	public ProductRepositoryJson() {
+		ClassPathResource resource = new ClassPathResource("json/product.json");
+	}
+
+	@Override
+	public List<Product> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

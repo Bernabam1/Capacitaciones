@@ -1,0 +1,17 @@
+package com.berna.microservicios.camelmicroservicea.routes.b;
+
+import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyFileRouter extends RouteBuilder{
+
+	@Override
+	public void configure() throws Exception {
+		from("file:files/input") // file:directoryName file es el tipo de componente que usa camel
+		.routeId("Files-Input-Route")
+		.log("${body}")
+		.to("file:files/output");		
+	}
+
+}

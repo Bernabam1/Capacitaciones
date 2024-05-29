@@ -1,0 +1,11 @@
+package com.berna.springboot.di.app.springbootdi.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SomeController {
+	
+	public List<Product> list(){
+		
+	}
+}

@@ -1,0 +1,5 @@
+package com.berna.springboot.di.app.springbootdi.services;
+
+public class ProductService {
+
+}

@@ -1,0 +1,23 @@
+package com.berna.springboot.di.app.springbootdi.repositories;
+
+import java.util.List;
+
+import com.berna.springboot.di.app.springbootdi.models.Product;
+
+public class ProductRepositoryJson implements ProductRepository{
+	
+	public ProductRepositoryJson() {}
+
+	@Override
+	public List<Product> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

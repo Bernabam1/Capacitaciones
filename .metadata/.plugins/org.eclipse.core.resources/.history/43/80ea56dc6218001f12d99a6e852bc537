@@ -1,0 +1,27 @@
+package com.berna.springboot.di.app.springbootdi.services;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.berna.springboot.di.app.springbootdi.models.Product;
+import com.berna.springboot.di.app.springbootdi.repositories.ProductRepositoryImpl;
+
+public class ProductServiceImpl implements ProductService{
+	// El service accede a los datos del repositorio y los trabaja
+	private ProductRepositoryImpl repository = new ProductRepositoryImpl();
+	
+	@Override
+	public List<Product> findAll(){
+		return repository.findAll().stream().map(p -> {
+			Double priceTax = p.getPrice()*1.25d;
+			Product newProd = (Product) p.clone(); // Esta clonada es para mantener la inmutabilidad
+			newProd.setPrice(priceTax.longValue());
+			return newProd;
+		}).collect(Collectors.toList());
+	}
+	
+	@Override
+	public Product findById(Long id) {
+		return repository.findById(id);
+	}
+}

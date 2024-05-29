@@ -1,0 +1,57 @@
+package com.berna.app.aop.aspects;
+
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class GreetingAspect {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	// JoinPoint une la ejecución de un aspecto con la llamada de un método
+	// Si en vez de el método pongo un * se ejecuta para todos los métodos del interfaz
+	// @Before("execution(* com.berna.app.aop.services.GreetingService.*(..))")
+	@Before("execution(String com.berna.app.aop.services.GreetingService.sayHello(..))")
+	public void LoggerBefore(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Before: método "+method+" con los argumentos "+args);
+	}
+	
+	@After("execution(String com.berna.app.aop.services.GreetingService.sayHello(..))")
+	public void LoggerAfter(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Después de retornar: método "+method+" con los argumentos "+args);
+	}
+	
+	@AfterReturning("execution(String com.berna.app.aop.services.GreetingService.sayHello(..))")
+	public void LoggerAfterReturning(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Después: método "+method+" con los argumentos "+args);
+	}
+	
+	@AfterThrowing("* execution(String com.berna.app.aop.services.GreetingService.*(..))")
+	public void LoggerAfterThrowing(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Después de lanzar la excepción: método "+method+" con los argumentos "+args);
+	}
+	
+	@Around("execution(")
+	public Object loggerAround(ProceedingJoinPoint joinPoint) {
+		return null;
+	}
+}

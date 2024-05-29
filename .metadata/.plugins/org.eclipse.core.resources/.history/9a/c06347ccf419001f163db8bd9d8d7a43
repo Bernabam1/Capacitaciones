@@ -1,0 +1,5 @@
+package com.berna.springboot.error.exceptions;
+
+public class UserNotFoundException extends RuntimeException{
+	
+}

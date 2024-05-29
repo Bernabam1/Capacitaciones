@@ -1,0 +1,5 @@
+package com.berna.app.aop.controllers;
+
+public class GreetingController {
+
+}

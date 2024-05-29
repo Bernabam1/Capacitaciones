@@ -1,0 +1,28 @@
+package com.berna.springboot.jpa.entities;
+
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "students")
+public class Student {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String name;
+	private String lastname;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) 
+	// No puedo tener el cascade en All por que no puedo hacer remove en ManyToMany ya que puede estar asignado
+	private Set<Course> courses;
+
+}

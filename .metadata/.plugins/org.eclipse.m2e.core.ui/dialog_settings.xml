@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\springboot-jpa-relationships"/>
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\spring-jpa"/>
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\springboot-aop"/>
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\springboot-error"/>
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\springboot-difactura"/>
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\springboot-di"/>
+			<item value="C:\Users\Windows 10 OS\Desktop\Assert\Capacitacion\capacitacion-camel"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+</section>

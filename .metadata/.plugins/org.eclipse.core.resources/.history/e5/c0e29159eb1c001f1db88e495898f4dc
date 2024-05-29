@@ -1,0 +1,5 @@
+package com.berna.curso.spring.jpa;
+
+public class PersonDTO {
+
+}

@@ -1,0 +1,27 @@
+package com.berna.springboot.error.services;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.berna.springboot.error.models.domain.User;
+
+@Service
+public class UserServiceImpl implements UserService {
+	private List<User> users;
+	
+	public UserServiceImpl() {
+		
+	}
+
+	@Override
+	public List<User> findAll() {
+		return users;
+	}
+
+	@Override
+	public User findById(Long id) {
+		return null;
+	}
+
+}

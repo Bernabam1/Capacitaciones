@@ -1,0 +1,13 @@
+package com.berna.springboot.app.crud.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="products")
+public class Product {
+	private Integer id;
+	private String name;
+	private Integer price;
+	private String description;
+}

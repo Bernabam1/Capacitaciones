@@ -1,0 +1,30 @@
+package com.berna.springboot.app.crud.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.berna.springboot.app.crud.entities.Product;
+import com.berna.springboot.app.crud.services.ProductService;
+
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+	
+	@Autowired
+	private ProductService service;
+	
+	@GetMapping // Si no pongo nada va ir a la ruta por defecto
+	public List<Product> list(){
+		return service.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> view(@PathVariable Long id) { // Devuelvo un RespEntity porque puede venir un error por ej
+		return service.findById(id).get(); //el .get() es para pasar de optional a product
+	}
+}

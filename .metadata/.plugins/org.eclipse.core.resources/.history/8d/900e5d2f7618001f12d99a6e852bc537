@@ -1,0 +1,11 @@
+package com.berna.microservicios.camelmicroservicea.routes.b;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class DeciderBean {
+	
+	public boolean condition() {
+		return true;
+	}
+}

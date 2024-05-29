@@ -1,0 +1,5 @@
+package com.berna.curso.springboot.di.factura;
+
+public class AppConfig {
+
+}

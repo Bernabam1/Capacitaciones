@@ -1,0 +1,35 @@
+package com.berna.springboot.di.app.springbootdi.repositories;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ResourceUtils;
+
+import com.berna.springboot.di.app.springbootdi.models.Product;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class ProductRepositoryJson implements ProductRepository{
+	
+	private List<Product> list;
+	
+	// Necesito un constructor vacío
+	public ProductRepositoryJson() {
+		Resource resource = new ClassPathResource("json/product.json"); // Path del recurso
+		ObjectMapper objectMapper = new ObjectMapper(); // Mapper
+		list = Arrays.asList(objectMapper.readValue(resource, null));
+	}
+
+	@Override
+	public List<Product> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

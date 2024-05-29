@@ -1,0 +1,13 @@
+package com.berna.microservicios.camelmicroservicea.routes.patterns;
+
+import org.apache.camel.builder.RouteBuilder;
+
+public class PatternsRouter extends RouteBuilder {
+
+	@Override
+	public void configure() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

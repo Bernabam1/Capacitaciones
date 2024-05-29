@@ -1,0 +1,5 @@
+package com.berna.springboot.error.models.domain.copy;
+
+public class User {
+
+}

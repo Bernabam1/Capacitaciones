@@ -1,0 +1,18 @@
+package com.berna.springboot.di.app.springbootdi.repositories;
+
+import java.util.Arrays;
+import java.util.List;
+
+import com.berna.springboot.di.app.springbootdi.models.Product;
+
+public class ProductRepository {
+	private List<Product> data;
+	
+	public ProductRepository() {
+		this.data = Arrays.asList(
+				new Product(1L, "Memoria", 300L),
+				new Product(2L, "CPU", 850L),
+				new Product(3L, "Teclado", 180L),
+				new Product(4L, "Motherboard", 490L));
+	}
+}

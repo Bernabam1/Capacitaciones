@@ -1,0 +1,7 @@
+package com.berna.microservicios.camelmicroservicea.routes.patterns;
+
+import RouteBuilder;
+
+public class PatternsRouter extends RouteBuilder {
+
+}

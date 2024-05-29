@@ -1,0 +1,23 @@
+package com.berna.curso.springboot.di.factura;
+
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+import com.berna.curso.springboot.di.factura.models.Item;
+import com.berna.curso.springboot.di.factura.models.Product;
+
+@Configuration
+@PropertySource("classpath:data.properties")
+public class AppConfig {
+	
+	@Bean //Esta lista
+	List<Item> itemsInvoice(){
+		Product p1 = new Product();
+		p1.setName("Camara");
+		p1.setPrice(800);
+		return null;
+	}
+}

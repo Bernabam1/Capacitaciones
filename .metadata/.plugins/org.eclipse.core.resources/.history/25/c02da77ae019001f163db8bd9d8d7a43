@@ -1,0 +1,17 @@
+package com.berna.springboot.error.controllers;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.berna.springboot.error.models.ErrorDTO;
+
+@ControllerAdvice
+public class HandlerExceptionController {
+	
+	@ExceptionHandler({ArithmeticException.class}) //Mapeo el error acá
+	public ResponseEntity<ErrorDTO> divisionByZero(Exception ex){
+		ErrorDTO err = new ErrorDTO();
+		return ResponseEntity.internalServerError().body("Error 500");
+	}
+}

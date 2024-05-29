@@ -1,0 +1,139 @@
+package com.berna.springboot.jpa;
+
+import java.util.Arrays;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.berna.springboot.jpa.entities.Address;
+import com.berna.springboot.jpa.entities.Client;
+import com.berna.springboot.jpa.entities.Invoice;
+import com.berna.springboot.jpa.repositories.ClientRepository;
+import com.berna.springboot.jpa.repositories.InvoiceRepository;
+
+@SpringBootApplication
+public class SpringbootJpaRelationshipsApplication implements CommandLineRunner {
+
+	@Autowired
+	private ClientRepository clientRepository;
+	@Autowired
+	private InvoiceRepository invoiceRepository;
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringbootJpaRelationshipsApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		removeAddressFindClientById();
+	}
+	
+	@Transactional
+	public void removeAddress() {
+		Client client = new Client("Jean Luc", "Picard");
+
+		Address address1 = new Address("Pellegrini", 1559);
+		Address address2 = new Address("Liniers", 846);
+
+		client.getAddresses().add(address1);
+		client.getAddresses().add(address2);
+
+		clientRepository.save(client);
+		System.out.println(client);
+		
+		Optional<Client> optClient = clientRepository.findOne(3L);
+		optClient.ifPresent(c->{
+			c.getAddresses().remove(address1);
+			clientRepository.save(c);
+			System.out.println(c);
+			//Para esto hay q redifinir el equals en address para q pueda comparar las direcciones
+			//spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true - el findOne soluciona esto
+		});
+	}
+	
+	@Transactional
+	public void removeAddressFindClientById() {
+		Optional<Client> optClient = clientRepository.findById(2L);
+		optClient.ifPresent(client -> {
+			Address address1 = new Address("Pellegrini", 1559);
+			Address address2 = new Address("Liniers", 846);
+
+			client.setAddresses(Arrays.asList(address1, address2));
+
+			clientRepository.save(client);
+			System.out.println(client);
+			
+			Optional<Client> optionalClient = clientRepository.findOne(2L);
+			optionalClient.ifPresent(c->{
+				c.getAddresses().remove(address2);
+				clientRepository.save(c);
+				System.out.println(c);
+				//Para esto hay q redifinir el equals en address para q pueda comparar las direcciones
+				//spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true - el findOne soluciona esto
+			});
+		});
+	}
+
+
+	@Transactional
+	public void oneToMany() {
+		Client client = new Client("Jean Luc", "Picard");
+
+		Address address1 = new Address("Pellegrini", 1559);
+		Address address2 = new Address("Liniers", 846);
+
+		client.getAddresses().add(address1);
+		client.getAddresses().add(address2);
+
+		clientRepository.save(client);
+		System.out.println(client);
+
+		// Las tablas quedan desacopladas pero se crea una tabla nueva
+		// clients_addresses tiene addresses_id, client_id
+	}
+
+	@Transactional
+	public void oneToManyFindClientById() {
+		Optional<Client> optClient = clientRepository.findById(2L);
+		optClient.ifPresent(client -> {
+			Address address1 = new Address("Pellegrini", 1559);
+			Address address2 = new Address("Liniers", 846);
+
+			client.setAddresses(Arrays.asList(address1, address2));
+
+			clientRepository.save(client);
+			System.out.println(client);
+		});
+	}
+
+	@Transactional
+	public void manyToOne() {
+		Client client = new Client("John", "Doe");
+		clientRepository.save(client);
+
+		Invoice invoice = new Invoice("Compras de oficina", 2000L);
+		invoice.setClient(client);
+		Invoice invoiceDB = invoiceRepository.save(invoice);
+		System.out.println(invoiceDB);
+	}
+
+	@Transactional
+	public void manyToOneFindClientById() { // busco el cliente en vez de crearlo
+		Optional<Client> optClient = clientRepository.findById(1L);
+
+		if (optClient.isPresent()) {
+			Client client = optClient.orElseThrow();
+
+			Invoice invoice = new Invoice("Compras de oficina", 2000L);
+			invoice.setClient(client);
+			Invoice invoiceDB = invoiceRepository.save(invoice);
+			System.out.println(invoiceDB);
+		}
+
+	}
+
+}

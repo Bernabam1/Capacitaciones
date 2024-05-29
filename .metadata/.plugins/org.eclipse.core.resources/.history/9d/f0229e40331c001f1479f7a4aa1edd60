@@ -1,0 +1,73 @@
+package com.berna.app.aop.aspects;
+
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class GreetingAspect {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Pointcut("execution(* com.berna.app.aop.services.*.*(..))")
+	private void greetingLoggerPointCut(){}
+	
+	// JoinPoint une la ejecución de un aspecto con la llamada de un método
+	// Si en vez de el método pongo un * se ejecuta para todos los métodos del interfaz
+	// @Before("execution(* com.berna.app.aop.services.GreetingService.*(..))")
+	@Before("greetingLoggerPointCut()")
+	public void LoggerBefore(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Before: método "+method+" con los argumentos "+args);
+	}
+	
+	@After("greetingLoggerPointCut()")
+	public void LoggerAfter(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Después de retornar: método "+method+" con los argumentos "+args);
+	}
+	
+	@AfterReturning("greetingLoggerPointCut()")
+	public void LoggerAfterReturning(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Después: método "+method+" con los argumentos "+args);
+	}
+	
+	@AfterThrowing("greetingLoggerPointCut()")
+	public void LoggerAfterThrowing(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		logger.info("Después de lanzar la excepción: método "+method+" con los argumentos "+args);
+	}
+	
+	@Around("execution(* com.berna.app.aop.services.*.*(..))")
+	public Object loggerAround(ProceedingJoinPoint joinPoint) throws Throwable {
+		String method = joinPoint.getSignature().getName();
+		String args = Arrays.toString(joinPoint.getArgs());
+		Object result = null;
+		
+		try {
+			logger.info("El método " + method + " entra con los parámetros (Around) "+ args); // Hago algo antes
+			result = joinPoint.proceed(); // Ejecuto el método con proceed
+			logger.info("El método " + method + " retorna el resultado (Around) "+ result); // Hago otra cosa
+			return result;
+		} catch (Throwable e) {
+			logger.error("Error en la llamada del método " + method);
+			throw e;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+package com.berna.curso.spring.jpa.repositories;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.berna.curso.spring.jpa.entities.Person;
+
+// Clase asociada y el tipo de dato de la PK
+// Al heredar de CrudRepository ya es un componente de spring y se puede inyectar
+public interface PersonRepositoryDAO extends CrudRepository<Person, Long>{
+// Crud repository tiene un montón de metodos de consulta básicos
+	
+	@Query("select p from Person where p.id = ?1")
+	Optional<Person> buscarUno(Long id);
+	
+	List<Person> findByProgrammingLanguage(String programmingLanguage);
+	
+	@Query("select p from Person p where p.programmingLanguage=?1 and p.name=?2")
+	// Nombre de la entidad, no de la tabla
+	// Nombre del atributo en el where
+	//Esto cuando no respeta la convención de nombres
+	List<Person> buscarByProgrammingLanguage(String programmingLanguage, String name);
+	
+	// Este cumple con la convención de nombre y es equivalente al de arriba
+	List<Person> findByProgrammingLanguageAndName(String programmingLanguage, String name);
+	
+	@Query("select p.name, p.programmingLanguage from Person p")
+	List<Object[]> obtenerPersonData();
+}

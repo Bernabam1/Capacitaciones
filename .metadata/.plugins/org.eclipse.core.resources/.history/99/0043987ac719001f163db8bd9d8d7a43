@@ -1,0 +1,4 @@
+client.name=Nombre del cliente сссс
+client.lastname=Apellido del cliente
+invoice.description=Descripcion de la factura
+invoice.description.b=Descripcion de la factura 2

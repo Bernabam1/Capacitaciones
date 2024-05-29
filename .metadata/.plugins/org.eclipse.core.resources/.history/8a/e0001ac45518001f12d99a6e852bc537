@@ -1,0 +1,7 @@
+package com.berna.springboot.di.app.springbootdi.models;
+
+public class Product {
+	private Long id;
+	private String nombre;
+	private Long price;
+}

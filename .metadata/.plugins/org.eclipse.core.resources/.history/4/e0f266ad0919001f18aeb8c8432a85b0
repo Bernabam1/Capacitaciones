@@ -1,0 +1,5 @@
+package com.berna.microservicios.camelmicroservicea.routes.patterns;
+
+public class ArrayListAggregationStrat {
+
+}

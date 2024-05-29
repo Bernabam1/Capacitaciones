@@ -1,0 +1,10 @@
+package com.berna.curso.spring.jpa.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="persons") // Si no se coloca table la la tabla va a tener el mismo nombre q la clase
+public class Person {
+
+}

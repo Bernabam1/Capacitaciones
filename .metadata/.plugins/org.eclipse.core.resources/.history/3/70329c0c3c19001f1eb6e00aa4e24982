@@ -1,0 +1,5 @@
+package com.berna.curso.springboot.di.factura.models;
+
+public class Product {
+
+}
