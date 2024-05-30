@@ -1,0 +1,3 @@
+NotEmpty.product.name=Campo requerido
+NotBlank.product.name=Campo requerido
+NotNull.product.price=No puede ser null

@@ -1,0 +1,23 @@
+package com.berna.springboot.app.crud;
+
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import com.berna.springboot.app.crud.entities.Product;
+
+@Component // Para que lo levante Spring
+public class ProductValidation implements Validator {
+
+	@Override
+	public boolean supports(Class<?> clazz) {
+		return Product.class.isAssignableFrom(clazz); // Acá va la clase referenciada así
+	}
+
+	@Override
+	public void validate(Object target, Errors errors) { // Target y BindindResult
+		// TODO Auto-generated method stub
+		
+	}
+
+}

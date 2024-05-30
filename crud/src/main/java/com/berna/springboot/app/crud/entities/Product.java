@@ -18,13 +18,13 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty // Validation
+	@NotEmpty(message = "{NotEmpty.product.name}") // para que tome lo del PropertySource
 	@Size(min=3, max=20)
 	private String name;
-	@Min(10)//Valida q sea entero y el valor minimo
-	@NotNull
+	@Min(10)
+	@NotNull(message = "{NotEmpty.product.price}")
 	private Integer price;
-	@NotEmpty
+	@NotEmpty(message = "{NotEmpty.product.description}")
 	private String description;
 	
 	public  Long getId() {

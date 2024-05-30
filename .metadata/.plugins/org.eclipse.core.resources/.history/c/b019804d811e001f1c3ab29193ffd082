@@ -1,0 +1,5 @@
+package com.berna.springboot.app.crud;
+
+public class ProductValidation {
+
+}

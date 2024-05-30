@@ -1,9 +1,0 @@
-package com.berna.springboot.di.app.springbootdi.services;
-
-public class ProductService {
-	// el service accede a los datos del repositorio y los trabaja
-	
-	public List<Product> findAll(){
-		
-	}
-}

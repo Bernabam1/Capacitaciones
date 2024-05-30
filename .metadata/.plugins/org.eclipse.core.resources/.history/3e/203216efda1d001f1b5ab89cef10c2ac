@@ -1,5 +1,0 @@
-package com.berna.springboot.app.crud.services;
-
-public class ProductServiceImpl {
-
-}

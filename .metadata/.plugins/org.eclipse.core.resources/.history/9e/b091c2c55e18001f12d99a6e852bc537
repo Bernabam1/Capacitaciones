@@ -1,9 +1,0 @@
-package com.berna.springboot.di.app.springbootdi.services;
-
-import java.util.List;
-
-import com.berna.springboot.di.app.springbootdi.models.Product;
-
-public interface ProductService {
-	public List<Product> findAll();
-}

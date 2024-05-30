@@ -1,0 +1,21 @@
+package com.berna.springboot.app.crud;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import com.berna.springboot.app.crud.entities.Product;
+
+public class ProductValidation implements Validator {
+
+	@Override
+	public boolean supports(Class<?> clazz) {
+		return Product.class.isAssignableFrom(clazz); // Acá va la clase referenciada así
+	}
+
+	@Override
+	public void validate(Object target, Errors errors) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

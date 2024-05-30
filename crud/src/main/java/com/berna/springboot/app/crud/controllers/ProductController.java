@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//import com.berna.springboot.app.crud.ProductValidation;
 import com.berna.springboot.app.crud.entities.Product;
 import com.berna.springboot.app.crud.services.ProductService;
 
@@ -29,6 +30,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService service;
+	
+	//@Autowired
+	//private ProductValidation validation; //La clase concreta del validator
 	
 	@GetMapping // Si no pongo nada va ir a la ruta por defecto
 	public List<Product> list(){
@@ -48,6 +52,7 @@ public class ProductController {
 	@PostMapping
 	public ResponseEntity<?> create(@Valid @RequestBody Product product, BindingResult result){
 		//Validacion
+		//validation.validate(product, result); // Esto es la implementación de la clase validation
 		if (result.hasFieldErrors()) {
 			return validation(result);
 		}

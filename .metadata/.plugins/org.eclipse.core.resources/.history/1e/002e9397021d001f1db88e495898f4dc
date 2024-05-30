@@ -1,5 +1,0 @@
-package com.berna.springboot.jpa.entities;
-
-public class Client {
-
-}
