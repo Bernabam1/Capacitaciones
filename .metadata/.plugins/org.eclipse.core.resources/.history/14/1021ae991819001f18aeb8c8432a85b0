@@ -1,5 +1,0 @@
-package com.berna.springboot.di.app.springbootdi.repositories;
-
-public class ProductRepositoryFoo {
-
-}

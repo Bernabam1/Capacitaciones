@@ -1,5 +1,0 @@
-package com.berna.curso.springboot.di.factura.controllers;
-
-public class InvoiceController {
-
-}
